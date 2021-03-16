@@ -21,30 +21,74 @@ __global__ void addKernel(int *c, const int *a, const int *b, const int *h, int 
     int pi = 0;
     int pp[20] = { 0 };
 
-    while (low < high) {
-        isPrime = true;
-        if (low == 0 || low == 1) {
+
+
+
+    for (int low = 0; low < high; low++) {
+
+        if (low <= 1) {
             isPrime = false;
+            continue;
         }
-        else {
-            for (ii = 2; ii <= low / 2; ++ii) {
-                if (low % ii == 0) {
-                    isPrime = false;
-                    break;
-                }
-            }
-        }
-
-        if (isPrime) {
-            printf("%d\n", low);
+        else if (low == 3) {
+            isPrime = true;
             p[pi] = low;
-           pi = pi + 1;
-           //printf("print ", pi);
- 
+            pi = pi + 1;
+            continue;
+        }
+        else if (low % 2 == 0 | low % 3 == 0) {
+            isPrime = false;
+            continue;
         }
 
-        ++low;
+        int iy = 5;
+
+        for (int ii = iy; ii * ii <= low; ii++) {
+
+            if (low % ii == 0 | low % (ii + 2) == 0) {
+                isPrime = false;
+                continue;
+            }
+            ii = ii + 6;
+        }
+        isPrime = true;
+        p[pi] = low;
+        pi = pi + 1;
+
     }
+
+
+
+
+    //while (low < high) {
+    //    isPrime = true;
+    //    if (low == 0 || low == 1) {
+    //        isPrime = false;
+    //    }
+    //    else {
+    //        for (ii = 2; ii <= low / 2; ++ii) {
+    //            if (low % ii == 0) {
+    //                isPrime = false;
+    //                break;
+    //            }
+    //        }
+    //    }
+
+    //    if (isPrime) {
+    //        printf("%d\n", low);
+    //        p[pi] = low;
+    //       pi = pi + 1;
+    //       //printf("print ", pi);
+ 
+    //    }
+
+    //    ++low;
+    //}
+
+
+
+
+
 
     //p = pp;
     printf("kuk");
